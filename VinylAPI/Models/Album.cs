@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace VinylAPI.Models;
 
-public class Vinyl
+public class Album
 {
-    private string title { get; set; }
-    private string artist { get; set; }
-    private string genre { get; set; }
-    private int year { get; set; }
-    
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public DateTime Released { get; set; }
+    public ICollection<ArtistAlbum> ArtistAlbums { get; set; }
+    public ICollection<AlbumGenre> AlbumGenres { get; set; }
 }
