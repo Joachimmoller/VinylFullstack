@@ -95,7 +95,7 @@ public class AlbumController : Controller
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
-    public IActionResult UpdateAlbum([FromQuery] int albumId,[FromQuery] int artistId, [FromQuery] int genreId, [FromBody] AlbumDTO updatedAlbum)
+    public IActionResult UpdateAlbum(int albumId,[FromQuery] int artistId, [FromQuery] int genreId, [FromBody] AlbumDTO updatedAlbum)
     {
         if (updatedAlbum == null)
             return BadRequest(ModelState);
@@ -116,6 +116,29 @@ public class AlbumController : Controller
             ModelState.AddModelError("", "Something went wrong while updating album");
             return StatusCode(500, ModelState);
         }
+        return NoContent();
+    }
+    
+    [HttpDelete("{albumId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult DeleteAlbum(int albumId)
+    {
+        if (!_albumRepository.AlbumExists(albumId))
+        {
+            return NotFound();
+        }
+
+        var albumToDelete = _albumRepository.GetAlbumById(albumId);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (!_albumRepository.DeleteAlbum(albumToDelete))
+        {
+            ModelState.AddModelError("", "Something went wrong deleting album");
+        }
+
         return NoContent();
     }
  

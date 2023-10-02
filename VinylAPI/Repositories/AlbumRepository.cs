@@ -65,6 +65,12 @@ public class AlbumRepository : IAlbumRepository
         return Save();
     }
 
+    public bool DeleteAlbum(Album album)
+    {
+        _context.Remove(album);
+        return Save();
+    }
+
     public bool Save()
     {
         var saved = _context.SaveChanges();

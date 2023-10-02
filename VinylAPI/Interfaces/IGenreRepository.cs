@@ -9,6 +9,7 @@ public interface IGenreRepository
     Genre GetGenreById(int id);
     bool CreateGenre(Genre genre);
     bool UpdateGenre(Genre genre);
+    bool DeleteGenre(Genre genre);
     bool Save();
 
 }

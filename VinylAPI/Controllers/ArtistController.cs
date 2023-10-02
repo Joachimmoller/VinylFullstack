@@ -116,4 +116,55 @@ public class ArtistController : Controller
         return Ok("Succesfully created");
     }
     
+    [HttpPut("{artistId:int}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateArtist([FromQuery] int countryId,[FromQuery] int artistId, [FromQuery] int genreId, [FromBody] ArtistDTO updatedArtist)
+    {
+        if (updatedArtist == null)
+            return BadRequest(ModelState);
+
+        if (artistId != updatedArtist.Id)
+            return BadRequest(ModelState);
+
+        if (!_artistRepository.ArtistExists(artistId))
+            return NotFound();
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var artistMap = _mapper.Map<Artist>(updatedArtist);
+            
+        if (!_artistRepository.UpdateArtist( countryId,artistId, genreId, artistMap))
+        {
+            ModelState.AddModelError("", "Something went wrong while updating artist");
+            return StatusCode(500, ModelState);
+        }
+        return NoContent();
+    }
+    
+    [HttpDelete("{artistId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult DeleteArtist(int artistId)
+    {
+        if (!_artistRepository.ArtistExists(artistId))
+        {
+            return NotFound();
+        }
+
+        var artistToDelete = _artistRepository.GetArtist(artistId);
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (!_artistRepository.DeleteArtist(artistToDelete))
+        {
+            ModelState.AddModelError("", "Something went wrong deleting artist");
+        }
+
+        return NoContent();
+    }
+    
 }

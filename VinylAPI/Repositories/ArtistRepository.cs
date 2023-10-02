@@ -75,6 +75,18 @@ public class ArtistRepository : IArtistRepository
         //TODO: Muligvis country her?
     }
 
+    public bool UpdateArtist(int countryId, int albumId, int artistGenreId, Artist artist)
+    {
+        _context.Update(artist);
+        return Save();
+    }
+
+    public bool DeleteArtist(Artist artist)
+    {
+        _context.Remove(artist);
+        return Save();
+    }
+
     public bool Save()
     {
         var saved = _context.SaveChanges();

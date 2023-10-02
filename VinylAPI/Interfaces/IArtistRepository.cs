@@ -13,7 +13,8 @@ public interface IArtistRepository
     ICollection<Artist> GetArtistByCountry(int countryId);
     bool ArtistExists(string name);
     bool CreateArtist(int countryId, int albumId, int artistGenreId, Artist artist);
-    
+    bool UpdateArtist(int countryId, int albumId, int artistGenreId, Artist artist);
+    bool DeleteArtist(Artist artist);
     bool Save();
     
 }
