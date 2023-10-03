@@ -22,12 +22,6 @@ public class ArtistRepository : IArtistRepository
         return artist;
     }
 
-    public Artist GetArtist(string name)
-    {
-        var artist = _context.Artists.FirstOrDefault(a => a.Name == name);
-        return artist;
-    }
-
     public ICollection<Artist> GetArtistsByGenre(int genreId)
     {
         var artists = _context.Artists.Where(a => a.ArtistGenres.Any(ag => ag.GenreId == genreId)).ToList();
@@ -72,7 +66,6 @@ public class ArtistRepository : IArtistRepository
         _context.Add(artistGenre);
         _context.Add(artist);
         return Save();
-        //TODO: Muligvis country her?
     }
 
     public bool UpdateArtist(int countryId, int albumId, int artistGenreId, Artist artist)

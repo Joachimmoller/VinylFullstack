@@ -32,7 +32,7 @@ public class AlbumController : Controller
     }
     
     // GET ALBUM BY ID
-    [HttpGet("{albumId:int}")]
+    [HttpGet("{albumId:int}/albumId")]
     [ProducesResponseType(200, Type = typeof(Album))]
     [ProducesResponseType(400)]
     public IActionResult GetAlbum(int albumId)

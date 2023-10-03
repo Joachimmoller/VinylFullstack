@@ -34,7 +34,7 @@ public class AlbumRepository : IAlbumRepository
     public ICollection<Album> GetAlbumsByArtistId(int artistId)
     {
         var albums = _context.Albums
-            .Where(a => a.ArtistAlbums == a.ArtistAlbums.Where(aa => aa.ArtistId == artistId)).ToList();
+            .Where(a => a.ArtistAlbums.Any(ag => ag.ArtistId == artistId)).ToList();
         return albums;
     }
 

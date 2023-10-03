@@ -28,6 +28,13 @@ public class CountryRepository : ICountryRepository
         return country;
     }
 
+    public Country GetCountryTrimToUpper(CountryDTO countryCreate)
+    {
+        return GetCountries()
+                .Where(c => c.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
+                .FirstOrDefault();
+    }
+
     public bool CreateCountry(Country country)
     {
         _context.Countries.Add(country);

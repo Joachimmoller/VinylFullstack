@@ -47,19 +47,6 @@ public class ArtistController : Controller
             return BadRequest(ModelState);
         return Ok(artist);
     }
-
-    [HttpGet("{artistName}")]
-    [ProducesResponseType(200, Type = typeof(Artist))]
-    [ProducesResponseType(400)]
-    public IActionResult GetArtist(string artistName)
-    {
-        if (!_artistRepository.ArtistExists(artistName))
-            return NotFound();
-        var artist = _mapper.Map<ArtistDTO>(_artistRepository.GetArtist(artistName));
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-        return Ok(artist);
-    }
     
     [HttpGet("{genreId}")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<Artist>))]
@@ -120,7 +107,7 @@ public class ArtistController : Controller
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     [ProducesResponseType(404)]
-    public IActionResult UpdateArtist([FromQuery] int countryId,[FromQuery] int artistId, [FromQuery] int genreId, [FromBody] ArtistDTO updatedArtist)
+    public IActionResult UpdateArtist([FromQuery] int countryId, int artistId, [FromQuery] int genreId, [FromBody] ArtistDTO updatedArtist)
     {
         if (updatedArtist == null)
             return BadRequest(ModelState);
