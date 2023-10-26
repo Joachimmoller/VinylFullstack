@@ -38,6 +38,13 @@ public class AlbumRepository : IAlbumRepository
         return albums;
     }
 
+    public Album GetAlbumTrimToUpper(AlbumDTO albumCreate)
+    {
+        return GetAlbums().Where(a => a.Title.Trim().ToUpper() == albumCreate.Title.TrimEnd().ToUpper())
+            .FirstOrDefault();
+    }
+
+
     public bool CreateAlbum(int artistId, int genreId, Album album)
     {
         var artistAlbumEntity = _context.Artists.Where(a => a.Id == artistId).FirstOrDefault();

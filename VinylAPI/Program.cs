@@ -30,6 +30,20 @@ builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 // Helpers and automappers
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
+builder.Services.AddCors(options =>
+{
+    var frontendUrl = builder.Configuration.GetValue<string>("frontend_url");
+    
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins(frontendUrl)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
@@ -45,6 +59,8 @@ void SeedData(IHost app)
     }
 }
 
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -53,6 +69,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
                         
 app.UseAuthorization();
 

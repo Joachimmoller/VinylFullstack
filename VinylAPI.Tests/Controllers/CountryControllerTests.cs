@@ -2,15 +2,9 @@ namespace VinylAPI.Tests.Controllers
 {
     public class CountryControllerTests
     {
-        private readonly ICountryRepository _countryRepository;
-        private readonly IMapper _mapper;
+        private readonly ICountryRepository _countryRepository = A.Fake<ICountryRepository>();
+        private readonly IMapper _mapper = A.Fake<IMapper>();
 
-        public CountryControllerTests()
-        {
-            _countryRepository = A.Fake<ICountryRepository>();
-            _mapper = A.Fake<IMapper>();
-        }
-        
         [Fact]
         public void CountryController_GetCountries_ReturnOK()
         {
@@ -29,6 +23,24 @@ namespace VinylAPI.Tests.Controllers
         }
         
         [Fact]
+        public void CountryController_GetCountries_ReturnBadRequest()
+        {
+            // Arrange
+            var countries = A.Fake<ICollection<CountryDTO>>();
+            var countryList = A.Fake<List<CountryDTO>>();
+            A.CallTo(() => _mapper.Map<List<CountryDTO>>(countries)).Returns(countryList);
+            var controller = new CountryController(_countryRepository, _mapper);
+            controller.ModelState.AddModelError("","Error");
+            
+            // Act
+            var result = controller.GetContries();
+            
+            // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType(typeof(BadRequestObjectResult));
+        }
+        
+        [Fact]
         public void CountryController_GetCountryById_ReturnOK()
         {
             // Arrange
@@ -43,6 +55,25 @@ namespace VinylAPI.Tests.Controllers
             
             // Assert
             result.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void CountryController_GetCountryById_ReturnNotFound()
+        {
+            // Arrange
+            var country = A.Fake<CountryDTO>();
+            var countryMap = A.Fake<Country>();
+            A.CallTo(() => _countryRepository.GetCountryById(country.Id)).Returns(countryMap);
+            A.CallTo(() => _mapper.Map<CountryDTO>(countryMap)).Returns(country);
+            var controller = new CountryController(_countryRepository, _mapper);
+            controller.ModelState.AddModelError("","Error");
+
+            // Act
+            var result = controller.GetCountry(country.Id);
+            
+            // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType(typeof(NotFoundResult));
         }
 
         [Fact]

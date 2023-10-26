@@ -9,6 +9,7 @@ public interface IAlbumRepository
     ICollection<Album> GetAlbums();
     Album GetAlbumById(int id);
     ICollection<Album> GetAlbumsByArtistId(int artistId);
+    Album GetAlbumTrimToUpper(AlbumDTO albumCreate);
     bool CreateAlbum(int artistId, int genreId, Album album);
     bool UpdateAlbum(int artistId, int genreId, Album album);
     bool DeleteAlbum(Album album);
