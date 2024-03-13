@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Artist from "./Components/Artist";
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import NewArtist from "./Components/NewArtist";
 
 function App() {
+  const [genre, setGenre] = useState("Rock");
+  const [artists, setArtists] = useState(
+      [
+        {name: "Metallica", genre: "Thrash Metal", img: ""},
+        {name: "Emperor", genre: "Black Metal", img: ""},
+        {name: "Pantera", genre: "Groove Metal", img: ""},
+        {name: "Samael", genre: "Industrial Black Metal", img: ""},
+        {name: "Opeth", genre: "Progressive Metal", img: ""},
+        {name: "Tool", genre: "Progressive Metal", img: ""}
+      ]
+  );
+  const showArtist = true;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {showArtist ? 
+      <>
+        <input type="text" onChange={(e) => {
+            console.log(e.target.value);
+            setGenre(e.target.value);
+          }}
+          />
+          <NewArtist />
+        <div className="flex flex-wrap justify-center">
+            {artists.map((artist, index) => {
+                return (
+                <Artist key={uuidv4()} name={artist.name} genre={artist.genre} img={artist.img}
+                />
+                );
+            })}
+        </div>
+      </>
+          : 
+          null
+      }
     </div>
   );
 }
