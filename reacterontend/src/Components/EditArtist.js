@@ -2,8 +2,11 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function EditArtist() {
-    const [show, setShow] = useState(false);
+function EditArtist(props) {
+    const [name ,  setName] = useState(props.name);
+    const [genre ,  setGenre] = useState(props.genre);
+
+    const [show ,  setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -25,7 +28,15 @@ function EditArtist() {
                     <Modal.Title>Update Artist</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form id="editmodal" className="w-full max-w-sm">
+                    TODO: Create fetch request to update artist
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        console.log("Update Artist from editArtist");
+                        console.log(props.id, name, genre);
+                        props.updateArtist(props.id, name, genre);
+                        handleClose();
+                    }}
+                          id="editmodal" className="w-full max-w-sm">
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
                                 <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -36,7 +47,10 @@ function EditArtist() {
                             <div className="md:w-2/3">
                                 <input
                                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                                    id="name" type="text" value="Shining"
+                                    id="name" 
+                                    type="text" 
+                                    value={name}
+                                    onChange={(e) => {setName(e.target.value)}}
                                 />
                             </div>
                         </div>
@@ -51,7 +65,10 @@ function EditArtist() {
                             <div className="md:w-2/3">
                                 <input
                                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                                    id="genre" type="text" value="Free Jazz"
+                                    id="genre" 
+                                    type="text" 
+                                    value={genre}
+                                    onChange={(e) => {setGenre(e.target.value)}}
                                 />
                             </div>
                         </div>
