@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function AddArtist(props) {
-    const [name ,  setName] = useState('');
+function AddAlbum(props) {
+    const [title ,  setTitle] = useState('');
     const [genre ,  setGenre] = useState('');
-    const [formed ,  setFormed] = useState('');
+    const [band ,  setBand] = useState('');
     const [img ,  setImg] = useState('');
 
     const [show ,  setShow] = useState(false);
@@ -18,7 +18,7 @@ function AddArtist(props) {
             <button
                 onClick={handleShow}
                 className="block mx-auto m-2 bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded">
-                + Add Artist
+                + Add Album
             </button>
             <Modal
                 show={show}
@@ -27,37 +27,37 @@ function AddArtist(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Artist</Modal.Title>
+                    <Modal.Title>Add Album</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    TODO: Create fetch request to add artist
+                    TODO: Create fetch request to add album
                     <form onSubmit={(e) => {
                         e.preventDefault();
-                        setName("");
+                        setTitle("");
                         setGenre("");
-                        setFormed("");
+                        setBand("");
                         setImg("");
-                        console.log("Update Artist from editArtist");
-                        console.log(props.id, name, genre);
-                        props.newArtist(name, genre);
+                        console.log("Update Album from editAlbum");
+                        console.log(props.id, title, genre);
+                        props.newAlbum(title, genre);
                     }}
                           id="editmodal" className="w-full max-w-sm">
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
                                 <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                        htmlFor="inline-full-name">
-                                    Artist Name
+                                    Album Title
                                 </label>
                             </div>
                             <div className="md:w-2/3">
                                 <input
                                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                                    id="name"
+                                    id="title"
                                     placeholder="Metallica"
                                     type="text"
-                                    value={name}
+                                    value={title}
                                     onChange={(e) => {
-                                        setName(e.target.value)
+                                        setTitle(e.target.value)
                                     }}
                                 />
                             </div>
@@ -65,7 +65,7 @@ function AddArtist(props) {
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
                                 <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                       htmlFor="name">
+                                       htmlFor="title">
                                     Genre
                                 </label>
                             </div>
@@ -85,18 +85,18 @@ function AddArtist(props) {
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
                                 <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                       htmlFor="formed">
-                                    Year Formed
+                                       htmlFor="band">
+                                    Band
                                 </label>
                             </div>
                             <div className="md:w-2/3">
                                 <input
                                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                                    id="formed"
+                                    id="band"
                                     placeholder={"26.07.1983"}
                                     type="text"
                                     onChange={(e) => {
-                                        setFormed(e.target.value)
+                                        setBand(e.target.value)
                                     }}
                                 />
                             </div>
@@ -132,7 +132,7 @@ function AddArtist(props) {
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                             onClick={handleClose}
                             form="editmodal"
-                            
+
                     >
                         Add
                     </button>
@@ -143,4 +143,4 @@ function AddArtist(props) {
     );
 }
 
-export default AddArtist;
+export default AddAlbum;

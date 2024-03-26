@@ -15,7 +15,7 @@ function EditArtist(props) {
         <>
             <button
                 onClick={handleShow}
-                className="px-4 py-1 text-sm text-black-600 font-semibold rounded-full border border-blue-700 hover:text-white hover:bg-blue-500 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+                className="px-4 py-1 text-sm text-white font-semibold rounded-full border border-blue-700 hover:text-white hover:bg-yellow-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2">
                 Update Artist
             </button>
             <Modal

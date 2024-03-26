@@ -2,9 +2,6 @@ import Artist from "../components/Artist";
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AddArtist from "../components/AddArtist";
-import EditArtist from "../components/EditArtist";
-import Header from "../components/Header";
-import BackgroundImg from "../assets/record-black-background.jpg"
 
 function Artists() {
 
@@ -38,12 +35,10 @@ function Artists() {
         };
         setArtists([...artists, newArtist]);
     }
-    const showArtist = true;
     return (
         <div className="">
-            {showArtist ?
+            {
                 <>
-                    <p>TODO: Create Background</p>
                     <AddArtist newArtist={newArtist}/>
                     <div className="flex flex-wrap justify-center">
                         {artists.map((artist, index) => {
@@ -59,8 +54,6 @@ function Artists() {
                         })}
                     </div>
                 </>
-                :
-                null
             }
         </div>
     );

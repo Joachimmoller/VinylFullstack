@@ -1,6 +1,6 @@
 import Header from "./components/Header";
-import BackgroundImg from "./assets/record-black-background.jpg"
 import Artists from "./pages/Artists";
+import Albums from "./pages/Albums";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
             <Header>
                 <Routes>
                     <Route path="/artists" element={<Artists />} />
+                    <Route path="/albums" element={<Albums />} />
                 </Routes>
             </Header>   
       </BrowserRouter>
