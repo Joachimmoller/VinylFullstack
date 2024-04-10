@@ -2,7 +2,7 @@ import UpdateArtist from "./UpdateArtist";
 import {useEffect, useState} from "react";
 
 const CLIENT_ID = "60188c43a077482d963c58f7ab21fd89";
-const CLIENT_SECRET = "8ebeb631c0d442f0bb9cb71c0905d8e9";
+const CLIENT_SECRET = "";
 
 function Artist(props) {
     
