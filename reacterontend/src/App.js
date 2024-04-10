@@ -11,7 +11,7 @@ function App() {
                     <Route path="/artists" element={<Artists />} />
                     <Route path="/albums" element={<Albums />} />
                 </Routes>
-            </Header>   
+            </Header>
       </BrowserRouter>
   )
 }

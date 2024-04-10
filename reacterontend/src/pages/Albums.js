@@ -8,7 +8,7 @@ function Albums() {
     const [genre, setGenre] = useState("Rock");
     const [albums, setAlbums] = useState(
         [
-            {id: 1, name: "Kill'em All", band: "Metaliilca", genre: "Thrash Metal", img: ""},
+            {id: 1, name: "Kill'em All", band: "Metallica", genre: "Thrash Metal", img: ""},
             {id: 2, name: "In the Nightside Eclipse", band: "Emperor", genre: "Black Metal", img: ""},
             {id: 3, name: "Vulgar Display of Power", band: "Pantera", genre: "Groove Metal", img: ""},
             {id: 4, name: "Passage", band: "Samael", genre: "Industrial Black Metal", img: ""},

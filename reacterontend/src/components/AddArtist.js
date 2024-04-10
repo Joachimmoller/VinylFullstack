@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function AddArtist(props) {
@@ -26,10 +25,10 @@ function AddArtist(props) {
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Artist</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                <Modal.Header className="bg-[#181915] justify-center border-yellow-300 border-1">
+                    <Modal.Title className="text-white">Add Artist</Modal.Title>
+                </Modal.Header >
+                <Modal.Body className="bg-[#28241D] border-yellow-300 border-r border-l text-white">
                     TODO: Create fetch request to add artist
                     <form onSubmit={(e) => {
                         e.preventDefault();
@@ -37,21 +36,21 @@ function AddArtist(props) {
                         setGenre("");
                         setFormed("");
                         setImg("");
-                        console.log("Update Artist from editArtist");
+                        console.log("Add Artist from addArtist");
                         console.log(props.id, name, genre);
                         props.newArtist(name, genre);
                     }}
-                          id="editmodal" className="w-full max-w-sm">
+                          id="addartistmodal" className="w-full max-w-sm">
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
-                                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                       htmlFor="inline-full-name">
+                                <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                       htmlFor="name">
                                     Artist Name
                                 </label>
                             </div>
                             <div className="md:w-2/3">
                                 <input
-                                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                                    className="bg-[#28241D] appearance-none border-1 border-yellow-300 rounded w-full py-2 px-3 text-gray-700 leading-tight"
                                     id="name"
                                     placeholder="Metallica"
                                     type="text"
@@ -64,16 +63,16 @@ function AddArtist(props) {
                         </div>
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
-                                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                       htmlFor="name">
+                                <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                       htmlFor="genre">
                                     Genre
                                 </label>
                             </div>
                             <div className="md:w-2/3">
                                 <input
-                                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                                    className="bg-[#28241D] appearance-none border-1 border-yellow-300 rounded w-full py-2 px-3 text-gray-700 leading-tight"
                                     id="genre"
-                                    placeholder="Rock"
+                                    placeholder="Thrash Metal"
                                     type="text"
                                     value={genre}
                                     onChange={(e) => {
@@ -84,14 +83,14 @@ function AddArtist(props) {
                         </div>
                         <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
-                                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                <label className="block text-white font-bold md:text-right mb-1 md:mb-0 pr-4"
                                        htmlFor="formed">
                                     Year Formed
                                 </label>
                             </div>
                             <div className="md:w-2/3">
                                 <input
-                                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                                    className="bg-[#28241D] appearance-none border-1 border-yellow-300 rounded w-full py-2 px-3 text-gray-700 leading-tight"
                                     id="formed"
                                     placeholder={"26.07.1983"}
                                     type="text"
@@ -101,43 +100,25 @@ function AddArtist(props) {
                                 />
                             </div>
                         </div>
-                        <div className="md:flex md:items-center mb-6">
-                            <div className="md:w-1/3">
-                                <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                                       htmlFor="img">
-                                    Image URL
-                                </label>
-                            </div>
-                            <div className="md:w-2/3">
-                                <input
-                                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                                    id="img"
-                                    placeholder={"https://google.com"}
-                                    type="text"
-                                    onChange={(e) => {
-                                        setImg(e.target.value)
-                                    }}
-                                />
-                            </div>
-                        </div>
                     </form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <button className="bg-slate-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                <div className="bg-[#181915] justify-center border-yellow-300 border-l border-b border-r rounded-bottom">
+                    
+                <Modal.Footer >
+                    <button className="bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded"
                             onClick={handleClose}
                     >
                         Close
                     </button>
 
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    <button className="bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded"
                             onClick={handleClose}
-                            form="editmodal"
-                            
+                            form="addartistmodal"
                     >
                         Add
                     </button>
-
                 </Modal.Footer>
+                </div>
             </Modal>
         </>
     );

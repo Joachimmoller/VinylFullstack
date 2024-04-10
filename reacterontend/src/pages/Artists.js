@@ -2,9 +2,9 @@ import Artist from "../components/Artist";
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AddArtist from "../components/AddArtist";
+import ArtistImgFetch from "../components/ArtistImgFetch";
 
 function Artists() {
-
     const [genre, setGenre] = useState("Rock");
     const [artists, setArtists] = useState(
         [
@@ -16,6 +16,7 @@ function Artists() {
             {id: 6, name: "Tool", genre: "Progressive Metal", img: ""}
         ]
     );
+    
     function updateArtist(id, newName, newGenre) {
         const updatedArtists = artists.map(artist => {
             if(id == artist.id) {
@@ -31,7 +32,7 @@ function Artists() {
             id: uuidv4(),
             name: name,
             genre: genre,
-            img: ""
+            img: <ArtistImgFetch searchBand={name} />
         };
         setArtists([...artists, newArtist]);
     }
